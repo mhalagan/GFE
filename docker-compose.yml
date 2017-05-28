@@ -1,0 +1,19 @@
+version: '3'
+services:
+  act:
+    image: "nmdpbioinformatics/service-act"
+    ports:
+     - "5000:5000" 
+    env_file:
+      - ./act.env
+    depends_on:
+      - db
+      - gfe
+  db:
+    image: "nmdpbioinformatics/gfe-db"    
+    ports:
+     - "7474:7474" 
+  gfe:
+    image: "nmdpbioinformatics/service-gfe-submission"
+    ports:
+     - "8080:5050"
